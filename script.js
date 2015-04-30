@@ -1,6 +1,13 @@
 var cityData = null;
 var cityHtml = null;
 var firstCity;
+var i = 0;
+
+function next(){
+    for(i = 0; i < locations.lenght; i++){
+
+    }
+}
 $(document).ready(function(){
     $("#get-info-btn").on("click", function() {
         if(cityHtml == null){
@@ -14,7 +21,7 @@ $(document).ready(function(){
         if(cityData == null) {
             $.get("data.json", function (data) {
                 cityData = data;
-                firstCity = data.locations[0].location;
+                firstCity = data.locations[i].location;
                 console.log(firstCity);
                 $(".location-name").append(firstCity);
             });
@@ -24,13 +31,16 @@ $(document).ready(function(){
     });
 
     $("#more-stuff").on("click", "#more-info", function(){
-       $(".location-info").append(cityData.locations[0].info);
+        $(".location-info").empty();
+       $(".location-info").append("<h3>General Info: </h3>" + cityData.locations[i].info);
     });
     $("#more-stuff").on("click", "#pop", function(){
-       $(".location-pop").append(cityData.locations[0].population);
+       $(".location-pop").empty();
+       $(".location-pop").append("<h3>Population: </h3>" + cityData.locations[i].population);
     });
     $("#more-stuff").on("click", "#area", function() {
-       $(".location-area").append(cityData.locations[0].area);
+        $(".location-area").empty();
+        $(".location-area").append("<h3>Area: </h3>" + cityData.locations[i].area);
     });
     $("#more-stuff").on("click", "#remove-place", function(){
        $(this).parent().remove();
